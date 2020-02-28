@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
 	ifstream inFile;
-	inFile.open("input.txt");
+	inFile.open("inputF.txt");
 	vector<long long int> inf;
 	long long int x;
 	while(inFile >> x){
@@ -57,7 +57,7 @@ int main(){
 	//OUTPUT
 	//myfile<<"acabaaq\n\n";
 	ofstream myfile;
-	myfile.open("output.txt");
+	myfile.open("outputF.txt");
 	myfile<<scanned<<"\n"; // print number of libraries
 	
 	totalDays=0; //totaldays = 0 to get the maximum
