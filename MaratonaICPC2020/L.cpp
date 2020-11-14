@@ -32,27 +32,18 @@ int main()
 		sort(aux.begin(), aux.end(), ordena);
 		palavras.push_back(aux);
 	}
-	cout<<"INICIANDO VERIFICACAO"<<endl;
-	for (auto &p : palavras){
-		cout<<p<<endl;
-	}
-	cout<<"INICIANDO VERIFICACAO 2"<<endl;
-		for(int i=0;i<x;i++){
-			for(int j=0;j<y;j++){
-				cout<<matrizEspeciais[i][j]<<" ";
-			}
-			cout<<endl;
-		}
-	cout<<"FINALIZANDO VERIFICACAO"<<endl;
+	
 	//VERIFICA AS PALAVRAS
 	int tam;
-	
+	int indice=0;//saber qual
 	for(int i=0;i<x;i++){
 		for(int j=0;j<y;j++){
+		indice=0;
 			for (auto &p : palavras) 
 			{  
+				indice++;
 			    tam=p.length(); // tamanho da palavra a ser verificada
-			    if(tam<x-i){ //se der erro ve o -1
+			    if(tam<=x-i){ //se der erro ve o -1
 			    	aux="";
 			    	for(int k=0;k<tam;k++){
 			    		aux+=matriz[i+k][j];
@@ -60,11 +51,16 @@ int main()
 			    	sort(aux.begin(), aux.end(), ordena);
 			    	if(p==aux){
 			    		for(int k=0;k<tam;k++){
-			    			matrizEspeciais[i+k][j]++;
+			    			if(matrizEspeciais[i+k][j]==0){
+			    				matrizEspeciais[i+k][j]=indice;
+			    			}else if(matrizEspeciais[i+k][j]!=99 && matrizEspeciais[i+k][j]!=indice){
+			    				matrizEspeciais[i+k][j]=99;
+			    			}
+			    			
 			    		}
 			    	}
 			    }
-			    if(tam<y-j){
+			    if(tam<=y-j){
 			    	aux="";
 			    	for(int k=0;k<tam;k++){
 			    		aux+=matriz[i][j+k];
@@ -72,11 +68,16 @@ int main()
 			    	sort(aux.begin(), aux.end(), ordena);
 			    	if(p==aux){
 			    		for(int k=0;k<tam;k++){
-			    			matrizEspeciais[i][j+k]++;
+			    			
+			    			if(matrizEspeciais[i][j+k]==0){
+			    				matrizEspeciais[i][j+k]=indice;
+			    			}else if(matrizEspeciais[i][j+k]!=99 && matrizEspeciais[i][j+k]!=indice){
+			    				matrizEspeciais[i][j+k]=99;
+			    			}
 			    		}
 			    	}
 			    }
-			    if(tam<x-i && tam<y-j){
+			    if(tam<=x-i && tam<=y-j){ //diagonal princ
 			    	aux="";
 			    	for(int k=0;k<tam;k++){
 			    		aux+=matriz[i+k][j+k];
@@ -84,20 +85,55 @@ int main()
 			    	sort(aux.begin(), aux.end(), ordena);
 			    	if(p==aux){
 			    		for(int k=0;k<tam;k++){
-			    			matrizEspeciais[i+k][j+k]++;
+			    			if(matrizEspeciais[i+k][j+k]==0){
+			    				matrizEspeciais[i+k][j+k]=indice;
+			    			}else if(matrizEspeciais[i+k][j+k]!=99 && matrizEspeciais[i+k][j+k]!=indice){
+			    				matrizEspeciais[i+k][j+k]=99;
+			    			}
 			    		}
 			    	}
 			    }
+			     if(i+tam<=x && j+1>=tam){ //diagonal sec
+			    	aux="";
+			    	for(int k=0;k<tam;k++){
+			    		aux+=matriz[i+k][j-k];
+			    	}
+			    	sort(aux.begin(), aux.end(), ordena);
+			    	if(p==aux){
+			    		for(int k=0;k<tam;k++){
+			    			if(matrizEspeciais[i+k][j-k]==0){
+			    				matrizEspeciais[i+k][j-k]=indice;
+			    			}else if(matrizEspeciais[i+k][j-k]!=99 && matrizEspeciais[i+k][j-k]!=indice){
+			    				matrizEspeciais[i+k][j-k]=99;
+			    			}
+			    		}
+			    	}
+			    } //fim diagonal
+			    
+			    
 			}
 		}
 	}
+	int val=0;
+	//print teste
+	 /*for(int i=0;i<x;i++){
+	    	for(int j=0;j<y;j++){
+	    		cout<<matrizEspeciais[i][j]<<" ";
+	    	}
+	    	cout<<endl;
+	    	
+	    } */
+	//print teste2 
 	
     for(int i=0;i<x;i++){
     	for(int j=0;j<y;j++){
-    		cout<<matrizEspeciais[i][j];
+    		if(matrizEspeciais[i][j]==99){
+			val++;
+		}
     	}
-    	cout<<endl;
+    	
     }
+    cout<<val<<endl;
 }
 
 
