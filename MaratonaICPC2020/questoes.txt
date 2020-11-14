@@ -1,0 +1,16 @@
+A:NLOGONIA (deve ser dificil)
+B: FACIL
+C: APARENTEMENTE FACIL
+D: aparentemente media/facil mas tem nlogonia
+E: aparentemente trabalhosa
+F: string
+G: facil ----------------riccardo
+H: ------------------ricardo
+I: grafo
+J: facil
+K: grafo
+L: string trabalhosa
+M: parece mt dificil
+N: parece media
+O: parece dificil
+
