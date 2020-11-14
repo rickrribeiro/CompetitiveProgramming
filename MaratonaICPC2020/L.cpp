@@ -1,92 +1,103 @@
-#include<iostream>
-#include <vector>
-#include <set>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-class vertice {
-public:
-	int x;
-	int y;
-	char letra;
-	vector<char> adj;
-};
 
-int main() {
-
-	int L, C, N;
-
-	vector<string> matriz;
-	vector<string> anamatriz;
-	vector<vertice*> graph;
-
-
-	cin >> L >> C;
-
-	for (int i = 0; i < L; i++) {
-		string palavra;
-		cin >> palavra;
-		matriz.push_back(palavra);
-	}
-
-	for (int x = 0; x < L; x++) {
-		int y = 0;
-		string palavra = matriz[x];
-
-		for (char c : palavra) {
-			vertice* v = new vertice();
-			v->letra = c;
-			v->x = x;
-			v->y = y;
-
-			if (y - 1 >= 0) {
-				v->adj.push_back(palavra[y - 1]);
-				if (x - 1 >= 0) {
-					v->adj.push_back(matriz[x - 1][y - 1]);
-				}
-				if (x + 1 < L) {
-					v->adj.push_back(matriz[x + 1][y - 1]);
-				}
-			}
-
-			if (y + 1 < C) {
-				v->adj.push_back(palavra[y + 1]);
-				if (x - 1 >= 0) {
-					v->adj.push_back(matriz[x - 1][y + 1]);
-				}
-				if (x + 1 < L) {
-					v->adj.push_back(matriz[x + 1][y + 1]);
-				}
-			}
-
-			if (x - 1 >= 0) {
-				v->adj.push_back(matriz[x - 1][y]);
-			}
-
-			if (x + 1 < L) {
-				v->adj.push_back(matriz[x + 1][y]);
-			}
-
-			graph.push_back(v);
-			y++;
-
-			cout << endl;
-			cout << endl;
-			cout << "ADJ para " << v->letra << "\n";
-			for (int s = 0; s < v->adj.size(); s++) {
-				cout << v->adj[s];
-			}
-			cout << endl;
-		}
-
-	}
-
-	cin >> N;
-
-	for (int i = 0; i < N; i++) {
-		string anagrama;
-		anamatriz.push_back(anagrama);
-	}
-
-
+bool ordena(char c1, char c2)
+{
+	return tolower(c1) < tolower(c2);
 }
+
+int main()
+{	//PREENCHE A MATRIZ
+	int x,y;
+	cin>>x>>y;
+	char matriz[x][y];
+	int matrizEspeciais[x][y];
+	
+	for(int i=0;i<x;i++){
+		for(int j=0;j<y;j++){
+			cin>>matriz[i][j];
+			matrizEspeciais[i][j]=0; // zera especiais
+		}
+	}
+	
+	//PEGA AS PALAVRAS A SEREM BUSCADAS e insere ordenando as letras
+	int qtPalavras;
+	cin>>qtPalavras;
+	vector<string> palavras;
+	string aux;
+	for(int i=0;i<qtPalavras;i++){
+		cin>>aux;
+		sort(aux.begin(), aux.end(), ordena);
+		palavras.push_back(aux);
+	}
+	cout<<"INICIANDO VERIFICACAO"<<endl;
+	for (auto &p : palavras){
+		cout<<p<<endl;
+	}
+	cout<<"INICIANDO VERIFICACAO 2"<<endl;
+		for(int i=0;i<x;i++){
+			for(int j=0;j<y;j++){
+				cout<<matrizEspeciais[i][j]<<" ";
+			}
+			cout<<endl;
+		}
+	cout<<"FINALIZANDO VERIFICACAO"<<endl;
+	//VERIFICA AS PALAVRAS
+	int tam;
+	
+	for(int i=0;i<x;i++){
+		for(int j=0;j<y;j++){
+			for (auto &p : palavras) 
+			{  
+			    tam=p.length(); // tamanho da palavra a ser verificada
+			    if(tam<x-i){ //se der erro ve o -1
+			    	aux="";
+			    	for(int k=0;k<tam;k++){
+			    		aux+=matriz[i+k][j];
+			    	}
+			    	sort(aux.begin(), aux.end(), ordena);
+			    	if(p==aux){
+			    		for(int k=0;k<tam;k++){
+			    			matrizEspeciais[i+k][j]++;
+			    		}
+			    	}
+			    }
+			    if(tam<y-j){
+			    	aux="";
+			    	for(int k=0;k<tam;k++){
+			    		aux+=matriz[i][j+k];
+			    	}
+			    	sort(aux.begin(), aux.end(), ordena);
+			    	if(p==aux){
+			    		for(int k=0;k<tam;k++){
+			    			matrizEspeciais[i][j+k]++;
+			    		}
+			    	}
+			    }
+			    if(tam<x-i && tam<y-j){
+			    	aux="";
+			    	for(int k=0;k<tam;k++){
+			    		aux+=matriz[i+k][j+k];
+			    	}
+			    	sort(aux.begin(), aux.end(), ordena);
+			    	if(p==aux){
+			    		for(int k=0;k<tam;k++){
+			    			matrizEspeciais[i+k][j+k]++;
+			    		}
+			    	}
+			    }
+			}
+		}
+	}
+	
+    for(int i=0;i<x;i++){
+    	for(int j=0;j<y;j++){
+    		cout<<matrizEspeciais[i][j];
+    	}
+    	cout<<endl;
+    }
+}
+
+
