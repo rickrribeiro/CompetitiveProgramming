@@ -1,9 +1,9 @@
-A:NLOGONIA (deve ser dificil)
+A:(deve ser dificil)
 B: FACIL
 C: APARENTEMENTE FACIL
-D: aparentemente media/facil mas tem nlogonia
+D: aparentemente dificil
 E: aparentemente trabalhosa
-F: string
+F: string facil
 G: facil ----------------riccardo
 H: ------------------ricardo
 I: grafo

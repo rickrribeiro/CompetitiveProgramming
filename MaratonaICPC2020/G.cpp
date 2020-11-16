@@ -5,23 +5,6 @@ using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
-    
-    int saldo = 100;
-    int maior;
-    maior=saldo;
-    int rodadas,aux;
-    cin >> rodadas;
-    for(int i=0;i<rodadas;i++){
-    	cin>>aux;
-    }
-    
-    	    
-   
-
-    cout << higher <<endl;
-}
-=======
 
     int saldo = 100;
     int rodadas;
@@ -53,4 +36,3 @@ int main()
 
     cout << higher << "\n";
 }
->>>>>>> 933832de0287144068ebc1d675970fb0cb3912f9
