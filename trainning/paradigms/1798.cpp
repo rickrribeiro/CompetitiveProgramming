@@ -5,18 +5,7 @@ int c[2500];
 map<int,int> valores;
 int maxVal[2500][2500];//tamanho corte e tamanho restante
 
-int maxi(int a, int b, int c, int d) //valor maximo
-{
-    if(a>=b && a>=c && a>=d){
-        return a;
-    }else if(b>=a && b>=c && b>=d){
-        return b;
-    }else if(c>=a && c>=b && c>=d){
-        return c;
-    }else{
-        return d;
-    }
-}
+int maxi(int a, int b, int c, int d);
 
 int dp(int idx, int tam){
     if(idx==-1){
@@ -43,11 +32,30 @@ int main(){
     
     for(int i=0;i<n;i++){
         cin>>c[i]>>aux;
-        valores[c[i]]=aux;
+        if(valores[c[i]]!=0){
+            if(valores[c[i]]<aux){
+                valores[c[i]]=aux;
+            }
+        }else{
+            valores[c[i]]=aux;
+        }
     }
     sort(c,c+n);
     
     int res = dp(n-1,t);
     cout<<res<<endl;
+    }
+}
+
+int maxi(int a, int b, int c, int d) //valor maximo
+{
+    if(a>=b && a>=c && a>=d){
+        return a;
+    }else if(b>=a && b>=c && b>=d){
+        return b;
+    }else if(c>=a && c>=b && c>=d){
+        return c;
+    }else{
+        return d;
     }
 }
