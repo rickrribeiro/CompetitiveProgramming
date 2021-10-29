@@ -21,20 +21,20 @@ int dp(int px, int py, int idx){
         return memo[px][py][idx];
     }
     float menorCaminho;
-   
+    // if(px==x[idx] || py == y[idx]){
 
-       // menorCaminho = trunc(sqrt(pow(px-x[idx],2)+pow(py-y[idx],2)));
-        int a = px-x[idx];
-        if(a<0){
-            a*=-1;
-        }
-        int b = py-y[idx];
-        if(b<0){
-            b*=-1;
-        }
-        menorCaminho = a>b?b:a;
-   
-  
+    //     int a = px-x[idx];
+    //     if(a<0){
+    //         a*=-1;
+    //     }
+    //     int b = py-y[idx];
+    //     if(b<0){
+    //         b*=-1;
+    //     }
+    //     menorCaminho = a>b?b:a;
+    //}else{
+        menorCaminho = trunc(sqrt(pow(px-x[idx],2)+pow(py-y[idx],2)));
+    //}
  
     if(menorCaminho>t[idx]){
         //cout<<"NPassou: ";
