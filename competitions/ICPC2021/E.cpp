@@ -146,7 +146,7 @@ int main(){
                 aux2=0;
                 total+=aux1;
                 j++;
-            }else if(a==0){
+            }else if(a==0){ //ngm vai subir
                 aux1=descendo[0];
                 aux2=1;
                 total+=aux1;

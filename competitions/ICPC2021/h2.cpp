@@ -14,10 +14,10 @@ int main(){
     int res = 1;
     for(long long int i=0;i<n-1;i++){
         if(num[i]!=i+1){
+
             if(cor[i]!=cor[num[i]-1]){
                 res=0;
                 break;
-
             }
         }
     }
