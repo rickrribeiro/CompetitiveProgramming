@@ -10,7 +10,7 @@ for i in range(n):
         if j not in arr and j!=0:
             continue
         for k in range(len(line)):#cada num na linha
-            if line[k]==1:#main site
+            if line[k]==1:
                 arr.append(k)
     for j in range(100):#POG ABSURDO
         #print(arr)
